@@ -7,7 +7,7 @@ api_instance <- StatsApi$new()
 
 test_that("ReadGameStats", {
   # tests for ReadGameStats
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Read Game Stats
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
@@ -32,7 +32,7 @@ test_that("ReadGameStats", {
 
 test_that("ReadSeasonStats", {
   # tests for ReadSeasonStats
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Read Season Stats
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
@@ -55,7 +55,7 @@ test_that("ReadSeasonStats", {
 
 test_that("ReadStatsGameIds", {
   # tests for ReadStatsGameIds
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Read Stats Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)

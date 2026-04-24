@@ -5,48 +5,23 @@ context("Test UsersApi")
 
 api_instance <- UsersApi$new()
 
-test_that("CreateUser", {
-  # tests for CreateUser
-  # base path: https://api.chickenstats.com
-  # Create User
-  # Create new user.
-  # @param user_create UserCreate 
-  # @return [UserPublic]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
-test_that("DeleteUser", {
-  # tests for DeleteUser
-  # base path: https://api.chickenstats.com
-  # Delete User
-  # Delete a user.
-  # @param user_id character 
-  # @return [Message]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("DeleteUserMe", {
   # tests for DeleteUserMe
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Delete User Me
-  # Delete own user.
+  # Delete own user and block Auth0 account.
   # @return [Message]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("ReadUserById", {
-  # tests for ReadUserById
-  # base path: https://api.chickenstats.com
-  # Read User By Id
-  # Get a specific user by id.
-  # @param user_id character 
-  # @return [UserPublic]
+test_that("GetProgrammaticCredentials", {
+  # tests for GetProgrammaticCredentials
+  # base path: http://localhost
+  # Get Programmatic Credentials
+  # Return the CF client ID for programmatic access. The secret is never retrievable —.  rotate credentials if the secret was lost.
+  # @return [ProgrammaticCredentials]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -54,7 +29,7 @@ test_that("ReadUserById", {
 
 test_that("ReadUserMe", {
   # tests for ReadUserMe
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Read User Me
   # Get current user.
   # @return [UserPublic]
@@ -63,14 +38,23 @@ test_that("ReadUserMe", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("ReadUsers", {
-  # tests for ReadUsers
-  # base path: https://api.chickenstats.com
-  # Read Users
-  # Retrieve users.
-  # @param skip integer  (optional)
-  # @param limit integer  (optional)
-  # @return [UsersPublic]
+test_that("ResendVerification", {
+  # tests for ResendVerification
+  # base path: http://localhost
+  # Resend Verification
+  # Trigger Auth0 to resend the verification email.
+  # @return [Message]
+
+  # uncomment below to test the operation
+  #expect_equal(result, "EXPECTED_RESULT")
+})
+
+test_that("RotateProgrammaticCredentials", {
+  # tests for RotateProgrammaticCredentials
+  # base path: http://localhost
+  # Rotate Programmatic Credentials
+  # Delete the existing CF service token and issue a new one. The new secret is.  returned once in the response and optionally emailed. Store it immediately.
+  # @return [ProgrammaticCredentials]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -78,9 +62,9 @@ test_that("ReadUsers", {
 
 test_that("Signup", {
   # tests for Signup
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Signup
-  # Public self-registration. Always creates a free-tier account.
+  # Public self-registration. Creates a local user, an Auth0 user, and a Ghost member.  If the account exists but is inactive (previously deactivated/pruned), reactivates it with the new credentials rather than rejecting the request.
   # @param user_register UserRegister 
   # @return [UserPublic]
 
@@ -88,11 +72,22 @@ test_that("Signup", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
+test_that("SyncGhostTier", {
+  # tests for SyncGhostTier
+  # base path: http://localhost
+  # Sync Ghost Tier
+  # Refresh tier from Ghost subscription state. No-op for contributor/superuser.
+  # @return [Message]
+
+  # uncomment below to test the operation
+  #expect_equal(result, "EXPECTED_RESULT")
+})
+
 test_that("UpdatePasswordMe", {
   # tests for UpdatePasswordMe
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Update Password Me
-  # Update own password.
+  # Update own password in Auth0. Verifies current password against Auth0 before changing.
   # @param update_password UpdatePassword 
   # @return [Message]
 
@@ -100,22 +95,9 @@ test_that("UpdatePasswordMe", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("UpdateUser", {
-  # tests for UpdateUser
-  # base path: https://api.chickenstats.com
-  # Update User
-  # Update a user.
-  # @param user_id character 
-  # @param user_update UserUpdate 
-  # @return [UserPublic]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("UpdateUserMe", {
   # tests for UpdateUserMe
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Update User Me
   # Update own user.
   # @param user_update_me UserUpdateMe 

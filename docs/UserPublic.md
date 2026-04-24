@@ -10,5 +10,7 @@ Name | Type | Description | Notes
 **full_name** | **character** |  | [optional] [Max. length: 255] 
 **tier** | **character** |  | [optional] [default to &quot;free&quot;] [Max. length: 20] 
 **id** | **character** |  | 
+**tools_write** | **character** |  | [optional] [default to FALSE] 
+**cf_client_id** | **character** |  | [optional] 
 
 

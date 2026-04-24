@@ -5,11 +5,11 @@ context("Test LoginApi")
 
 api_instance <- LoginApi$new()
 
-test_that("LoginAccessToken", {
-  # tests for LoginAccessToken
-  # base path: https://api.chickenstats.com
-  # Login Access Token
-  # OAuth2 compatible token login, get an access token for future requests.
+test_that("LoginAuth0Token", {
+  # tests for LoginAuth0Token
+  # base path: http://localhost
+  # Login Auth0 Token
+  # Exchange email + password for an Auth0 access token (for use with API data endpoints).
   # @param username character 
   # @param password character 
   # @param grant_type character  (optional)
@@ -22,11 +22,23 @@ test_that("LoginAccessToken", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
+test_that("LoginCallback", {
+  # tests for LoginCallback
+  # base path: http://localhost
+  # Login Callback
+  # Exchange an Auth0 authorization code (Universal Login) for a local HS256 session token.
+  # @param code character 
+  # @return [Token]
+
+  # uncomment below to test the operation
+  #expect_equal(result, "EXPECTED_RESULT")
+})
+
 test_that("RecoverPassword", {
   # tests for RecoverPassword
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Recover Password
-  # Password Recovery.
+  # Always returns 200 to prevent email enumeration.
   # @param email character 
   # @return [Message]
 
@@ -36,7 +48,7 @@ test_that("RecoverPassword", {
 
 test_that("RecoverPasswordHtmlContent", {
   # tests for RecoverPasswordHtmlContent
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Recover Password Html Content
   # HTML Content for Password Recovery.
   # @param email character 
@@ -48,9 +60,9 @@ test_that("RecoverPasswordHtmlContent", {
 
 test_that("ResetPassword", {
   # tests for ResetPassword
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Reset Password
-  # Reset password.
+  # Reset password using the token from the recovery email.
   # @param new_password NewPassword 
   # @return [Message]
 
@@ -60,7 +72,7 @@ test_that("ResetPassword", {
 
 test_that("TestToken", {
   # tests for TestToken
-  # base path: https://api.chickenstats.com
+  # base path: http://localhost
   # Test Token
   # Test access token.
   # @return [UserPublic]

@@ -13,6 +13,8 @@
 #' @field full_name  character [optional]
 #' @field tier  character [optional]
 #' @field id  character
+#' @field tools_write  character [optional]
+#' @field cf_client_id  character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -25,6 +27,8 @@ UserPublic <- R6::R6Class(
     `full_name` = NULL,
     `tier` = NULL,
     `id` = NULL,
+    `tools_write` = NULL,
+    `cf_client_id` = NULL,
 
     #' @description
     #' Initialize a new UserPublic class.
@@ -35,8 +39,10 @@ UserPublic <- R6::R6Class(
     #' @param is_superuser is_superuser. Default to FALSE.
     #' @param full_name full_name
     #' @param tier tier. Default to "free".
+    #' @param tools_write tools_write. Default to FALSE.
+    #' @param cf_client_id cf_client_id
     #' @param ... Other optional arguments.
-    initialize = function(`email`, `id`, `is_active` = TRUE, `is_superuser` = FALSE, `full_name` = NULL, `tier` = "free", ...) {
+    initialize = function(`email`, `id`, `is_active` = TRUE, `is_superuser` = FALSE, `full_name` = NULL, `tier` = "free", `tools_write` = FALSE, `cf_client_id` = NULL, ...) {
       if (!missing(`email`)) {
         if (!(is.character(`email`) && length(`email`) == 1)) {
           stop(paste("Error! Invalid data for `email`. Must be a string:", `email`))
@@ -72,6 +78,18 @@ UserPublic <- R6::R6Class(
           stop(paste("Error! Invalid data for `tier`. Must be a string:", `tier`))
         }
         self$`tier` <- `tier`
+      }
+      if (!is.null(`tools_write`)) {
+        if (!(is.logical(`tools_write`) && length(`tools_write`) == 1)) {
+          stop(paste("Error! Invalid data for `tools_write`. Must be a boolean:", `tools_write`))
+        }
+        self$`tools_write` <- `tools_write`
+      }
+      if (!is.null(`cf_client_id`)) {
+        if (!(is.character(`cf_client_id`) && length(`cf_client_id`) == 1)) {
+          stop(paste("Error! Invalid data for `cf_client_id`. Must be a string:", `cf_client_id`))
+        }
+        self$`cf_client_id` <- `cf_client_id`
       }
     },
 
@@ -130,6 +148,14 @@ UserPublic <- R6::R6Class(
         UserPublicObject[["id"]] <-
           self$`id`
       }
+      if (!is.null(self$`tools_write`)) {
+        UserPublicObject[["tools_write"]] <-
+          self$`tools_write`
+      }
+      if (!is.null(self$`cf_client_id`)) {
+        UserPublicObject[["cf_client_id"]] <-
+          self$`cf_client_id`
+      }
       return(UserPublicObject)
     },
 
@@ -158,6 +184,12 @@ UserPublic <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
+      if (!is.null(this_object$`tools_write`)) {
+        self$`tools_write` <- this_object$`tools_write`
+      }
+      if (!is.null(this_object$`cf_client_id`)) {
+        self$`cf_client_id` <- this_object$`cf_client_id`
+      }
       self
     },
 
@@ -185,6 +217,8 @@ UserPublic <- R6::R6Class(
       self$`full_name` <- this_object$`full_name`
       self$`tier` <- this_object$`tier`
       self$`id` <- this_object$`id`
+      self$`tools_write` <- this_object$`tools_write`
+      self$`cf_client_id` <- this_object$`cf_client_id`
       self
     },
 

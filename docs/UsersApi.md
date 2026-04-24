@@ -1,127 +1,26 @@
 # UsersApi
 
-All URIs are relative to *https://api.chickenstats.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UsersApi.md#CreateUser) | **POST** /api/v1/users/ | Create User
-[**DeleteUser**](UsersApi.md#DeleteUser) | **DELETE** /api/v1/users/{user_id} | Delete User
 [**DeleteUserMe**](UsersApi.md#DeleteUserMe) | **DELETE** /api/v1/users/me | Delete User Me
-[**ReadUserById**](UsersApi.md#ReadUserById) | **GET** /api/v1/users/{user_id} | Read User By Id
+[**GetProgrammaticCredentials**](UsersApi.md#GetProgrammaticCredentials) | **GET** /api/v1/users/me/programmatic-credentials | Get Programmatic Credentials
 [**ReadUserMe**](UsersApi.md#ReadUserMe) | **GET** /api/v1/users/me | Read User Me
-[**ReadUsers**](UsersApi.md#ReadUsers) | **GET** /api/v1/users/ | Read Users
+[**ResendVerification**](UsersApi.md#ResendVerification) | **POST** /api/v1/users/me/resend-verification | Resend Verification
+[**RotateProgrammaticCredentials**](UsersApi.md#RotateProgrammaticCredentials) | **POST** /api/v1/users/me/programmatic-credentials/rotate | Rotate Programmatic Credentials
 [**Signup**](UsersApi.md#Signup) | **POST** /api/v1/users/signup | Signup
+[**SyncGhostTier**](UsersApi.md#SyncGhostTier) | **POST** /api/v1/users/me/sync-ghost | Sync Ghost Tier
 [**UpdatePasswordMe**](UsersApi.md#UpdatePasswordMe) | **PATCH** /api/v1/users/me/password | Update Password Me
-[**UpdateUser**](UsersApi.md#UpdateUser) | **PATCH** /api/v1/users/{user_id} | Update User
 [**UpdateUserMe**](UsersApi.md#UpdateUserMe) | **PATCH** /api/v1/users/me | Update User Me
 
-
-# **CreateUser**
-> UserPublic CreateUser(user_create)
-
-Create User
-
-Create new user.
-
-### Example
-```R
-library(chickenstats.api)
-
-# Create User
-#
-# prepare function argument(s)
-var_user_create <- UserCreate$new("email_example", "password_example", "is_active_example", "is_superuser_example", "full_name_example", "tier_example") # UserCreate | 
-
-api_instance <- UsersApi$new()
-# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
-api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$CreateUser(var_user_createdata_file = "result.txt")
-result <- api_instance$CreateUser(var_user_create)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_create** | [**UserCreate**](UserCreate.md)|  | 
-
-### Return type
-
-[**UserPublic**](UserPublic.md)
-
-### Authorization
-
-[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
-
-# **DeleteUser**
-> Message DeleteUser(user_id)
-
-Delete User
-
-Delete a user.
-
-### Example
-```R
-library(chickenstats.api)
-
-# Delete User
-#
-# prepare function argument(s)
-var_user_id <- "user_id_example" # character | 
-
-api_instance <- UsersApi$new()
-# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
-api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$DeleteUser(var_user_iddata_file = "result.txt")
-result <- api_instance$DeleteUser(var_user_id)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **character**|  | 
-
-### Return type
-
-[**Message**](Message.md)
-
-### Authorization
-
-[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
 
 # **DeleteUserMe**
 > Message DeleteUserMe()
 
 Delete User Me
 
-Delete own user.
+Delete own user and block Auth0 account.
 
 ### Example
 ```R
@@ -160,40 +59,35 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
 
-# **ReadUserById**
-> UserPublic ReadUserById(user_id)
+# **GetProgrammaticCredentials**
+> ProgrammaticCredentials GetProgrammaticCredentials()
 
-Read User By Id
+Get Programmatic Credentials
 
-Get a specific user by id.
+Return the CF client ID for programmatic access. The secret is never retrievable —.  rotate credentials if the secret was lost.
 
 ### Example
 ```R
 library(chickenstats.api)
 
-# Read User By Id
+# Get Programmatic Credentials
 #
-# prepare function argument(s)
-var_user_id <- "user_id_example" # character | 
 
 api_instance <- UsersApi$new()
 # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
 api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ReadUserById(var_user_iddata_file = "result.txt")
-result <- api_instance$ReadUserById(var_user_id)
+# result <- api_instance$GetProgrammaticCredentials(data_file = "result.txt")
+result <- api_instance$GetProgrammaticCredentials()
 dput(result)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **character**|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserPublic**](UserPublic.md)
+[**ProgrammaticCredentials**](ProgrammaticCredentials.md)
 
 ### Authorization
 
@@ -208,7 +102,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
 
 # **ReadUserMe**
 > UserPublic ReadUserMe()
@@ -254,42 +147,35 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
 
-# **ReadUsers**
-> UsersPublic ReadUsers(skip = 0, limit = 100)
+# **ResendVerification**
+> Message ResendVerification()
 
-Read Users
+Resend Verification
 
-Retrieve users.
+Trigger Auth0 to resend the verification email.
 
 ### Example
 ```R
 library(chickenstats.api)
 
-# Read Users
+# Resend Verification
 #
-# prepare function argument(s)
-var_skip <- 0 # integer |  (Optional)
-var_limit <- 100 # integer |  (Optional)
 
 api_instance <- UsersApi$new()
 # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
 api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ReadUsers(skip = var_skip, limit = var_limitdata_file = "result.txt")
-result <- api_instance$ReadUsers(skip = var_skip, limit = var_limit)
+# result <- api_instance$ResendVerification(data_file = "result.txt")
+result <- api_instance$ResendVerification()
 dput(result)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **skip** | **integer**|  | [optional] [default to 0]
- **limit** | **integer**|  | [optional] [default to 100]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**UsersPublic**](UsersPublic.md)
+[**Message**](Message.md)
 
 ### Authorization
 
@@ -304,14 +190,57 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
+
+# **RotateProgrammaticCredentials**
+> ProgrammaticCredentials RotateProgrammaticCredentials()
+
+Rotate Programmatic Credentials
+
+Delete the existing CF service token and issue a new one. The new secret is.  returned once in the response and optionally emailed. Store it immediately.
+
+### Example
+```R
+library(chickenstats.api)
+
+# Rotate Programmatic Credentials
+#
+
+api_instance <- UsersApi$new()
+# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$RotateProgrammaticCredentials(data_file = "result.txt")
+result <- api_instance$RotateProgrammaticCredentials()
+dput(result)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ProgrammaticCredentials**](ProgrammaticCredentials.md)
+
+### Authorization
+
+[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
 
 # **Signup**
 > UserPublic Signup(user_register)
 
 Signup
 
-Public self-registration. Always creates a free-tier account.
+Public self-registration. Creates a local user, an Auth0 user, and a Ghost member.  If the account exists but is inactive (previously deactivated/pruned), reactivates it with the new credentials rather than rejecting the request.
 
 ### Example
 ```R
@@ -354,12 +283,56 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
+# **SyncGhostTier**
+> Message SyncGhostTier()
+
+Sync Ghost Tier
+
+Refresh tier from Ghost subscription state. No-op for contributor/superuser.
+
+### Example
+```R
+library(chickenstats.api)
+
+# Sync Ghost Tier
+#
+
+api_instance <- UsersApi$new()
+# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$SyncGhostTier(data_file = "result.txt")
+result <- api_instance$SyncGhostTier()
+dput(result)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Message**](Message.md)
+
+### Authorization
+
+[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+
 # **UpdatePasswordMe**
 > Message UpdatePasswordMe(update_password)
 
 Update Password Me
 
-Update own password.
+Update own password in Auth0. Verifies current password against Auth0 before changing.
 
 ### Example
 ```R
@@ -388,58 +361,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Message**](Message.md)
-
-### Authorization
-
-[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
-
-# **UpdateUser**
-> UserPublic UpdateUser(user_id, user_update)
-
-Update User
-
-Update a user.
-
-### Example
-```R
-library(chickenstats.api)
-
-# Update User
-#
-# prepare function argument(s)
-var_user_id <- "user_id_example" # character | 
-var_user_update <- UserUpdate$new("email_example", "is_active_example", "is_superuser_example", "full_name_example", "tier_example", "password_example") # UserUpdate | 
-
-api_instance <- UsersApi$new()
-# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
-api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$UpdateUser(var_user_id, var_user_updatedata_file = "result.txt")
-result <- api_instance$UpdateUser(var_user_id, var_user_update)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **character**|  | 
- **user_update** | [**UserUpdate**](UserUpdate.md)|  | 
-
-### Return type
-
-[**UserPublic**](UserPublic.md)
 
 ### Authorization
 

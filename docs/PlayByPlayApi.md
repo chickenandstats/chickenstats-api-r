@@ -1,6 +1,6 @@
 # PlayByPlayApi
 
-All URIs are relative to *https://api.chickenstats.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -1,28 +1,29 @@
 # LoginApi
 
-All URIs are relative to *https://api.chickenstats.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LoginAccessToken**](LoginApi.md#LoginAccessToken) | **POST** /api/v1/login/access-token | Login Access Token
+[**LoginAuth0Token**](LoginApi.md#LoginAuth0Token) | **POST** /api/v1/login/auth0-token | Login Auth0 Token
+[**LoginCallback**](LoginApi.md#LoginCallback) | **POST** /api/v1/login/callback | Login Callback
 [**RecoverPassword**](LoginApi.md#RecoverPassword) | **POST** /api/v1/password-recovery/{email} | Recover Password
 [**RecoverPasswordHtmlContent**](LoginApi.md#RecoverPasswordHtmlContent) | **POST** /api/v1/password-recovery-html-content/{email} | Recover Password Html Content
 [**ResetPassword**](LoginApi.md#ResetPassword) | **POST** /api/v1/reset-password/ | Reset Password
 [**TestToken**](LoginApi.md#TestToken) | **POST** /api/v1/login/test-token | Test Token
 
 
-# **LoginAccessToken**
-> Token LoginAccessToken(username, password, grant_type = var.grant_type, scope = "", client_id = var.client_id, client_secret = var.client_secret)
+# **LoginAuth0Token**
+> Token LoginAuth0Token(username, password, grant_type = var.grant_type, scope = "", client_id = var.client_id, client_secret = var.client_secret)
 
-Login Access Token
+Login Auth0 Token
 
-OAuth2 compatible token login, get an access token for future requests.
+Exchange email + password for an Auth0 access token (for use with API data endpoints).
 
 ### Example
 ```R
 library(chickenstats.api)
 
-# Login Access Token
+# Login Auth0 Token
 #
 # prepare function argument(s)
 var_username <- "username_example" # character | 
@@ -34,8 +35,8 @@ var_client_secret <- "client_secret_example" # character |  (Optional)
 
 api_instance <- LoginApi$new()
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$LoginAccessToken(var_username, var_password, grant_type = var_grant_type, scope = var_scope, client_id = var_client_id, client_secret = var_client_secretdata_file = "result.txt")
-result <- api_instance$LoginAccessToken(var_username, var_password, grant_type = var_grant_type, scope = var_scope, client_id = var_client_id, client_secret = var_client_secret)
+# result <- api_instance$LoginAuth0Token(var_username, var_password, grant_type = var_grant_type, scope = var_scope, client_id = var_client_id, client_secret = var_client_secretdata_file = "result.txt")
+result <- api_instance$LoginAuth0Token(var_username, var_password, grant_type = var_grant_type, scope = var_scope, client_id = var_client_id, client_secret = var_client_secret)
 dput(result)
 ```
 
@@ -69,12 +70,60 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
+# **LoginCallback**
+> Token LoginCallback(code)
+
+Login Callback
+
+Exchange an Auth0 authorization code (Universal Login) for a local HS256 session token.
+
+### Example
+```R
+library(chickenstats.api)
+
+# Login Callback
+#
+# prepare function argument(s)
+var_code <- "code_example" # character | 
+
+api_instance <- LoginApi$new()
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$LoginCallback(var_codedata_file = "result.txt")
+result <- api_instance$LoginCallback(var_code)
+dput(result)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **character**|  | 
+
+### Return type
+
+[**Token**](Token.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+
 # **RecoverPassword**
 > Message RecoverPassword(email)
 
 Recover Password
 
-Password Recovery.
+Always returns 200 to prevent email enumeration.
 
 ### Example
 ```R
@@ -172,7 +221,7 @@ Name | Type | Description  | Notes
 
 Reset Password
 
-Reset password.
+Reset password using the token from the recovery email.
 
 ### Example
 ```R

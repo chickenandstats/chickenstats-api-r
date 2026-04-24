@@ -46,3 +46,17 @@ test_that("id", {
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
 })
+
+test_that("tools_write", {
+  # tests for the property `tools_write` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`tools_write`, "EXPECTED_RESULT")
+})
+
+test_that("cf_client_id", {
+  # tests for the property `cf_client_id` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`cf_client_id`, "EXPECTED_RESULT")
+})
