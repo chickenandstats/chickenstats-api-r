@@ -7,7 +7,7 @@ api_instance <- PlayByPlayApi$new()
 
 test_that("ReadPbp", {
   # tests for ReadPbp
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Read Pbp
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
@@ -28,7 +28,7 @@ test_that("ReadPbp", {
 
 test_that("ReadPbpGameIds", {
   # tests for ReadPbpGameIds
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Read Pbp Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
@@ -40,7 +40,7 @@ test_that("ReadPbpGameIds", {
 
 test_that("ReadPbpPlayIds", {
   # tests for ReadPbpPlayIds
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Read Pbp Play Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)

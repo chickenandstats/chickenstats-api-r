@@ -7,7 +7,7 @@ api_instance <- LoginApi$new()
 
 test_that("LoginAuth0Token", {
   # tests for LoginAuth0Token
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Login Auth0 Token
   # Exchange email + password for an Auth0 access token (for use with API data endpoints).
   # @param username character 
@@ -24,7 +24,7 @@ test_that("LoginAuth0Token", {
 
 test_that("LoginCallback", {
   # tests for LoginCallback
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Login Callback
   # Exchange an Auth0 authorization code (Universal Login) for a local HS256 session token.
   # @param code character 
@@ -36,7 +36,7 @@ test_that("LoginCallback", {
 
 test_that("RecoverPassword", {
   # tests for RecoverPassword
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Recover Password
   # Always returns 200 to prevent email enumeration.
   # @param email character 
@@ -48,7 +48,7 @@ test_that("RecoverPassword", {
 
 test_that("RecoverPasswordHtmlContent", {
   # tests for RecoverPasswordHtmlContent
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Recover Password Html Content
   # HTML Content for Password Recovery.
   # @param email character 
@@ -60,7 +60,7 @@ test_that("RecoverPasswordHtmlContent", {
 
 test_that("ResetPassword", {
   # tests for ResetPassword
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Reset Password
   # Reset password using the token from the recovery email.
   # @param new_password NewPassword 
@@ -72,7 +72,7 @@ test_that("ResetPassword", {
 
 test_that("TestToken", {
   # tests for TestToken
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Test Token
   # Test access token.
   # @return [UserPublic]

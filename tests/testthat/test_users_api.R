@@ -7,7 +7,7 @@ api_instance <- UsersApi$new()
 
 test_that("DeleteUserMe", {
   # tests for DeleteUserMe
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Delete User Me
   # Delete own user and block Auth0 account.
   # @return [Message]
@@ -18,7 +18,7 @@ test_that("DeleteUserMe", {
 
 test_that("GetProgrammaticCredentials", {
   # tests for GetProgrammaticCredentials
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Get Programmatic Credentials
   # Return the CF client ID for programmatic access. The secret is never retrievable —.  rotate credentials if the secret was lost.
   # @return [ProgrammaticCredentials]
@@ -29,7 +29,7 @@ test_that("GetProgrammaticCredentials", {
 
 test_that("ReadUserMe", {
   # tests for ReadUserMe
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Read User Me
   # Get current user.
   # @return [UserPublic]
@@ -40,7 +40,7 @@ test_that("ReadUserMe", {
 
 test_that("ResendVerification", {
   # tests for ResendVerification
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Resend Verification
   # Trigger Auth0 to resend the verification email.
   # @return [Message]
@@ -51,7 +51,7 @@ test_that("ResendVerification", {
 
 test_that("RotateProgrammaticCredentials", {
   # tests for RotateProgrammaticCredentials
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Rotate Programmatic Credentials
   # Delete the existing CF service token and issue a new one. The new secret is.  returned once in the response and optionally emailed. Store it immediately.
   # @return [ProgrammaticCredentials]
@@ -62,7 +62,7 @@ test_that("RotateProgrammaticCredentials", {
 
 test_that("Signup", {
   # tests for Signup
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Signup
   # Public self-registration. Creates a local user, an Auth0 user, and a Ghost member.  If the account exists but is inactive (previously deactivated/pruned), reactivates it with the new credentials rather than rejecting the request.
   # @param user_register UserRegister 
@@ -74,7 +74,7 @@ test_that("Signup", {
 
 test_that("SyncGhostTier", {
   # tests for SyncGhostTier
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Sync Ghost Tier
   # Refresh tier from Ghost subscription state. No-op for contributor/superuser.
   # @return [Message]
@@ -85,7 +85,7 @@ test_that("SyncGhostTier", {
 
 test_that("UpdatePasswordMe", {
   # tests for UpdatePasswordMe
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Update Password Me
   # Update own password in Auth0. Verifies current password against Auth0 before changing.
   # @param update_password UpdatePassword 
@@ -97,7 +97,7 @@ test_that("UpdatePasswordMe", {
 
 test_that("UpdateUserMe", {
   # tests for UpdateUserMe
-  # base path: http://localhost
+  # base path: https://api.chickenstats.com
   # Update User Me
   # Update own user.
   # @param user_update_me UserUpdateMe 

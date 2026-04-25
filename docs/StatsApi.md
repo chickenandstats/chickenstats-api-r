@@ -1,6 +1,6 @@
 # StatsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.chickenstats.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
