@@ -19,6 +19,8 @@
 #' library(chickenstats.api)
 #' var_api_id <- c(123) # array[integer] |  (Optional)
 #' var_team <- c("inner_example") # array[character] |  (Optional)
+#' var_limit <- 10000 # integer |  (Optional)
+#' var_offset <- 0 # integer |  (Optional)
 #'
 #' #Read Roster Game Ids
 #' api_instance <- RostersApi$new()
@@ -27,8 +29,8 @@
 #' api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_teamdata_file = "result.txt")
-#' result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team)
+#' # result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+#' result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team, limit = var_limit, offset = var_offset)
 #' dput(result)
 #'
 #'
@@ -80,12 +82,14 @@ RostersApi <- R6::R6Class(
     #'
     #' @param api_id (optional) No description
     #' @param team (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return array[integer]
-    ReadRosterGameIds = function(api_id = NULL, team = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ReadRosterGameIdsWithHttpInfo(api_id, team, data_file = data_file, ...)
+    ReadRosterGameIds = function(api_id = NULL, team = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
+      local_var_response <- self$ReadRosterGameIdsWithHttpInfo(api_id, team, limit, offset, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -102,11 +106,13 @@ RostersApi <- R6::R6Class(
     #'
     #' @param api_id (optional) No description
     #' @param team (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (array[integer]) with additional information such as HTTP status code, headers
-    ReadRosterGameIdsWithHttpInfo = function(api_id = NULL, team = NULL, data_file = NULL, ...) {
+    ReadRosterGameIdsWithHttpInfo = function(api_id = NULL, team = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -118,6 +124,17 @@ RostersApi <- R6::R6Class(
 
 
 
+      if (`limit` > 50000) {
+        stop("Invalid value for `limit` when calling RostersApi$ReadRosterGameIds, must be smaller than or equal to 50000.")
+      }
+      if (`limit` < 1) {
+        stop("Invalid value for `limit` when calling RostersApi$ReadRosterGameIds, must be bigger than or equal to 1.")
+      }
+
+      if (`offset` < 0) {
+        stop("Invalid value for `offset` when calling RostersApi$ReadRosterGameIds, must be bigger than or equal to 0.")
+      }
+
       # explore
       for (query_item in `api_id`) {
         query_params[["api_id"]] <- c(query_params[["api_id"]], list(`api_id` = query_item))
@@ -127,6 +144,10 @@ RostersApi <- R6::R6Class(
       for (query_item in `team`) {
         query_params[["team"]] <- c(query_params[["team"]], list(`team` = query_item))
       }
+
+      query_params[["limit"]] <- `limit`
+
+      query_params[["offset"]] <- `offset`
 
       local_var_url_path <- "/api/v1/chicken_nhl/rosters/game_ids"
       # OAuth-related settings

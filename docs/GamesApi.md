@@ -23,6 +23,8 @@ library(chickenstats.api)
 var_game_id <- 56 # integer | 
 
 api_instance <- GamesApi$new()
+# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
 # result <- api_instance$ReadGame(var_game_iddata_file = "result.txt")
 result <- api_instance$ReadGame(var_game_id)
@@ -41,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
 
 ### HTTP request headers
 

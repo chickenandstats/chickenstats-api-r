@@ -74,8 +74,6 @@ All URIs are relative to *https://api.chickenstats.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BillingApi* | [**CreateCheckoutSession**](docs/BillingApi.md#CreateCheckoutSession) | **POST** /api/v1/billing/checkout | Create Checkout Session
-*BillingApi* | [**CreatePortalSession**](docs/BillingApi.md#CreatePortalSession) | **POST** /api/v1/billing/portal | Create Portal Session
 *ChangesApi* | [**ReadChanges**](docs/ChangesApi.md#ReadChanges) | **GET** /api/v1/chicken_nhl/changes | Read Changes
 *ChangesApi* | [**ReadChangesGameIds**](docs/ChangesApi.md#ReadChangesGameIds) | **GET** /api/v1/chicken_nhl/changes/game_ids | Read Changes Game Ids
 *GamesApi* | [**ReadGame**](docs/GamesApi.md#ReadGame) | **GET** /api/v1/chicken_nhl/games/{game_id} | Read Game

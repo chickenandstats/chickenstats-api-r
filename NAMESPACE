@@ -70,7 +70,6 @@ export(ValidationError)
 export(ValidationErrorLocInner)
 
 # APIs
-export(BillingApi)
 export(ChangesApi)
 export(GamesApi)
 export(InferenceApi)

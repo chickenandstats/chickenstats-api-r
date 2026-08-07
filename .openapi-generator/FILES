@@ -8,7 +8,6 @@ DESCRIPTION
 NAMESPACE
 R/api_client.R
 R/api_response.R
-R/billing_api.R
 R/changes_api.R
 R/changes_public.R
 R/changes_response.R
@@ -81,7 +80,6 @@ R/users_public.R
 R/validation_error.R
 R/validation_error_loc_inner.R
 README.md
-docs/BillingApi.md
 docs/ChangesApi.md
 docs/ChangesPublic.md
 docs/ChangesResponse.md
@@ -155,7 +153,6 @@ docs/ValidationError.md
 docs/ValidationErrorLocInner.md
 git_push.sh
 tests/testthat.R
-tests/testthat/test_billing_api.R
 tests/testthat/test_changes_api.R
 tests/testthat/test_changes_public.R
 tests/testthat/test_changes_response.R

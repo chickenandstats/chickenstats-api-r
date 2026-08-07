@@ -29,6 +29,8 @@ test_that("ReadChangesGameIds", {
   # Read Changes Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation

@@ -50,6 +50,8 @@ test_that("ReadTeamStatsGameIds", {
   # Read Team Stats Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation
@@ -62,6 +64,8 @@ test_that("ReadTeamStatsIds", {
   # Read Team Stats Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[character]]
 
   # uncomment below to test the operation

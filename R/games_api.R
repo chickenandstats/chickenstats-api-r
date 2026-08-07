@@ -22,6 +22,9 @@
 #' #Read Game
 #' api_instance <- GamesApi$new()
 #'
+#' # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+#' api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
+#'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
 #' # result <- api_instance$ReadGame(var_game_iddata_file = "result.txt")
 #' result <- api_instance$ReadGame(var_game_id)
@@ -119,6 +122,9 @@ GamesApi <- R6::R6Class(
         local_var_url_path <- gsub("\\{game_id\\}", URLencode(as.character(`game_id`), reserved = TRUE), local_var_url_path)
       }
 
+      # OAuth-related settings
+      is_oauth <- TRUE
+      oauth_scopes <- ""
 
       # The Accept request HTTP header
       local_var_accepts <- list("application/json")

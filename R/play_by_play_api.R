@@ -48,6 +48,8 @@
 #' library(chickenstats.api)
 #' var_season <- c(123) # array[integer] |  (Optional)
 #' var_sessions <- c("R") # array[character] |  (Optional)
+#' var_limit <- 10000 # integer |  (Optional)
+#' var_offset <- 0 # integer |  (Optional)
 #'
 #' #Read Pbp Game Ids
 #' api_instance <- PlayByPlayApi$new()
@@ -56,8 +58,8 @@
 #' api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$ReadPbpGameIds(season = var_season, sessions = var_sessionsdata_file = "result.txt")
-#' result <- api_instance$ReadPbpGameIds(season = var_season, sessions = var_sessions)
+#' # result <- api_instance$ReadPbpGameIds(season = var_season, sessions = var_sessions, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+#' result <- api_instance$ReadPbpGameIds(season = var_season, sessions = var_sessions, limit = var_limit, offset = var_offset)
 #' dput(result)
 #'
 #'
@@ -67,6 +69,8 @@
 #' var_season <- c(123) # array[integer] |  (Optional)
 #' var_sessions <- c("R") # array[character] |  (Optional)
 #' var_game_id <- c(123) # array[integer] |  (Optional)
+#' var_limit <- 10000 # integer |  (Optional)
+#' var_offset <- 0 # integer |  (Optional)
 #'
 #' #Read Pbp Play Ids
 #' api_instance <- PlayByPlayApi$new()
@@ -75,8 +79,8 @@
 #' api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$ReadPbpPlayIds(season = var_season, sessions = var_sessions, game_id = var_game_iddata_file = "result.txt")
-#' result <- api_instance$ReadPbpPlayIds(season = var_season, sessions = var_sessions, game_id = var_game_id)
+#' # result <- api_instance$ReadPbpPlayIds(season = var_season, sessions = var_sessions, game_id = var_game_id, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+#' result <- api_instance$ReadPbpPlayIds(season = var_season, sessions = var_sessions, game_id = var_game_id, limit = var_limit, offset = var_offset)
 #' dput(result)
 #'
 #'
@@ -315,12 +319,14 @@ PlayByPlayApi <- R6::R6Class(
     #'
     #' @param season (optional) No description
     #' @param sessions (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return array[integer]
-    ReadPbpGameIds = function(season = NULL, sessions = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ReadPbpGameIdsWithHttpInfo(season, sessions, data_file = data_file, ...)
+    ReadPbpGameIds = function(season = NULL, sessions = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
+      local_var_response <- self$ReadPbpGameIdsWithHttpInfo(season, sessions, limit, offset, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -337,11 +343,13 @@ PlayByPlayApi <- R6::R6Class(
     #'
     #' @param season (optional) No description
     #' @param sessions (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (array[integer]) with additional information such as HTTP status code, headers
-    ReadPbpGameIdsWithHttpInfo = function(season = NULL, sessions = NULL, data_file = NULL, ...) {
+    ReadPbpGameIdsWithHttpInfo = function(season = NULL, sessions = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -352,6 +360,17 @@ PlayByPlayApi <- R6::R6Class(
       is_oauth <- FALSE
 
 
+
+      if (`limit` > 50000) {
+        stop("Invalid value for `limit` when calling PlayByPlayApi$ReadPbpGameIds, must be smaller than or equal to 50000.")
+      }
+      if (`limit` < 1) {
+        stop("Invalid value for `limit` when calling PlayByPlayApi$ReadPbpGameIds, must be bigger than or equal to 1.")
+      }
+
+      if (`offset` < 0) {
+        stop("Invalid value for `offset` when calling PlayByPlayApi$ReadPbpGameIds, must be bigger than or equal to 0.")
+      }
 
       # explore
       for (query_item in `season`) {
@@ -366,6 +385,10 @@ PlayByPlayApi <- R6::R6Class(
         }
         query_params[["sessions"]] <- c(query_params[["sessions"]], list(`sessions` = query_item))
       }
+
+      query_params[["limit"]] <- `limit`
+
+      query_params[["offset"]] <- `offset`
 
       local_var_url_path <- "/api/v1/chicken_nhl/play_by_play/game_ids"
       # OAuth-related settings
@@ -426,12 +449,14 @@ PlayByPlayApi <- R6::R6Class(
     #' @param season (optional) No description
     #' @param sessions (optional) No description
     #' @param game_id (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return array[integer]
-    ReadPbpPlayIds = function(season = NULL, sessions = NULL, game_id = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ReadPbpPlayIdsWithHttpInfo(season, sessions, game_id, data_file = data_file, ...)
+    ReadPbpPlayIds = function(season = NULL, sessions = NULL, game_id = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
+      local_var_response <- self$ReadPbpPlayIdsWithHttpInfo(season, sessions, game_id, limit, offset, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -449,11 +474,13 @@ PlayByPlayApi <- R6::R6Class(
     #' @param season (optional) No description
     #' @param sessions (optional) No description
     #' @param game_id (optional) No description
+    #' @param limit (optional) No description (default value: 10000)
+    #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (array[integer]) with additional information such as HTTP status code, headers
-    ReadPbpPlayIdsWithHttpInfo = function(season = NULL, sessions = NULL, game_id = NULL, data_file = NULL, ...) {
+    ReadPbpPlayIdsWithHttpInfo = function(season = NULL, sessions = NULL, game_id = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -465,6 +492,17 @@ PlayByPlayApi <- R6::R6Class(
 
 
 
+
+      if (`limit` > 50000) {
+        stop("Invalid value for `limit` when calling PlayByPlayApi$ReadPbpPlayIds, must be smaller than or equal to 50000.")
+      }
+      if (`limit` < 1) {
+        stop("Invalid value for `limit` when calling PlayByPlayApi$ReadPbpPlayIds, must be bigger than or equal to 1.")
+      }
+
+      if (`offset` < 0) {
+        stop("Invalid value for `offset` when calling PlayByPlayApi$ReadPbpPlayIds, must be bigger than or equal to 0.")
+      }
 
       # explore
       for (query_item in `season`) {
@@ -484,6 +522,10 @@ PlayByPlayApi <- R6::R6Class(
       for (query_item in `game_id`) {
         query_params[["game_id"]] <- c(query_params[["game_id"]], list(`game_id` = query_item))
       }
+
+      query_params[["limit"]] <- `limit`
+
+      query_params[["offset"]] <- `offset`
 
       local_var_url_path <- "/api/v1/chicken_nhl/play_by_play/play_ids"
       # OAuth-related settings

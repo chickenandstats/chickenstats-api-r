@@ -34,6 +34,8 @@ test_that("ReadLinesGameIds", {
   # Read Lines Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation
@@ -46,6 +48,8 @@ test_that("ReadLinesLineIds", {
   # Read Lines Line Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[character]]
 
   # uncomment below to test the operation

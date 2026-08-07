@@ -34,6 +34,8 @@ test_that("ReadPbpGameIds", {
   # Read Pbp Game Ids
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation
@@ -47,6 +49,8 @@ test_that("ReadPbpPlayIds", {
   # @param season array[integer]  (optional)
   # @param sessions array[character]  (optional)
   # @param game_id array[integer]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation

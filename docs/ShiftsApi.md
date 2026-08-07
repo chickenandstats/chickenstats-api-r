@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 | **422** | Validation Error |  -  |
 
 # **ReadShiftsGameIds**
-> array[integer] ReadShiftsGameIds(season = var.season, sessions = var.sessions)
+> array[integer] ReadShiftsGameIds(season = var.season, sessions = var.sessions, limit = 10000, offset = 0)
 
 Read Shifts Game Ids
 
@@ -86,13 +86,15 @@ library(chickenstats.api)
 # prepare function argument(s)
 var_season <- c(123) # array[integer] |  (Optional)
 var_sessions <- c("R") # array[character] |  (Optional)
+var_limit <- 10000 # integer |  (Optional)
+var_offset <- 0 # integer |  (Optional)
 
 api_instance <- ShiftsApi$new()
 # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
 api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ReadShiftsGameIds(season = var_season, sessions = var_sessionsdata_file = "result.txt")
-result <- api_instance$ReadShiftsGameIds(season = var_season, sessions = var_sessions)
+# result <- api_instance$ReadShiftsGameIds(season = var_season, sessions = var_sessions, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+result <- api_instance$ReadShiftsGameIds(season = var_season, sessions = var_sessions, limit = var_limit, offset = var_offset)
 dput(result)
 ```
 
@@ -102,6 +104,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **season** | list( **integer** )|  | [optional] 
  **sessions** | Enum [R, P] |  | [optional] 
+ **limit** | **integer**|  | [optional] [default to 10000]
+ **offset** | **integer**|  | [optional] [default to 0]
 
 ### Return type
 

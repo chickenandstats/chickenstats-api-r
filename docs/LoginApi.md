@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Login Firebase Token
 
-Exchange email + password for a Firebase ID token (for use with API data endpoints).
+Exchange email + password for the backend's own local session token.  For use with API data endpoints (this is the OAuth2 password-grant tokenUrl both Swagger's \"Authorize\" button and API/SDK clients use). Verifies the password against Firebase first, then mints a local token via the same path login_verify_token uses -- see _mint_session_token's own docstring for why this isn't Firebase's raw ID token.
 
 ### Example
 ```R

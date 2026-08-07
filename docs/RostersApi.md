@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **ReadRosterGameIds**
-> array[integer] ReadRosterGameIds(api_id = var.api_id, team = var.team)
+> array[integer] ReadRosterGameIds(api_id = var.api_id, team = var.team, limit = 10000, offset = 0)
 
 Read Roster Game Ids
 
@@ -22,13 +22,15 @@ library(chickenstats.api)
 # prepare function argument(s)
 var_api_id <- c(123) # array[integer] |  (Optional)
 var_team <- c("inner_example") # array[character] |  (Optional)
+var_limit <- 10000 # integer |  (Optional)
+var_offset <- 0 # integer |  (Optional)
 
 api_instance <- RostersApi$new()
 # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
 api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_teamdata_file = "result.txt")
-result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team)
+# result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+result <- api_instance$ReadRosterGameIds(api_id = var_api_id, team = var_team, limit = var_limit, offset = var_offset)
 dput(result)
 ```
 
@@ -38,6 +40,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_id** | list( **integer** )|  | [optional] 
  **team** | list( **character** )|  | [optional] 
+ **limit** | **integer**|  | [optional] [default to 10000]
+ **offset** | **integer**|  | [optional] [default to 0]
 
 ### Return type
 

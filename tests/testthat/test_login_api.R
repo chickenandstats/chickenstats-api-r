@@ -9,7 +9,7 @@ test_that("LoginFirebaseToken", {
   # tests for LoginFirebaseToken
   # base path: https://api.chickenstats.com
   # Login Firebase Token
-  # Exchange email + password for a Firebase ID token (for use with API data endpoints).
+  # Exchange email + password for the backend&#39;s own local session token.  For use with API data endpoints (this is the OAuth2 password-grant tokenUrl both Swagger&#39;s \&quot;Authorize\&quot; button and API/SDK clients use). Verifies the password against Firebase first, then mints a local token via the same path login_verify_token uses -- see _mint_session_token&#39;s own docstring for why this isn&#39;t Firebase&#39;s raw ID token.
   # @param username character 
   # @param password character 
   # @param grant_type character  (optional)

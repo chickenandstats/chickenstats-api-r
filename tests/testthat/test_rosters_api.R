@@ -11,6 +11,8 @@ test_that("ReadRosterGameIds", {
   # Read Roster Game Ids
   # @param api_id array[integer]  (optional)
   # @param team array[character]  (optional)
+  # @param limit integer  (optional)
+  # @param offset integer  (optional)
   # @return [array[integer]]
 
   # uncomment below to test the operation
