@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *LiveApi* | [**ReadLiveGames**](docs/LiveApi.md#ReadLiveGames) | **GET** /api/v1/live/games | Read Live Games
 *LiveApi* | [**ReadLivePbp**](docs/LiveApi.md#ReadLivePbp) | **GET** /api/v1/live/play_by_play | Read Live Pbp
 *LoginApi* | [**LoginFirebaseToken**](docs/LoginApi.md#LoginFirebaseToken) | **POST** /api/v1/login/firebase-token | Login Firebase Token
+*LoginApi* | [**LoginRefresh**](docs/LoginApi.md#LoginRefresh) | **POST** /api/v1/login/refresh | Login Refresh
 *LoginApi* | [**LoginVerifyToken**](docs/LoginApi.md#LoginVerifyToken) | **POST** /api/v1/login/verify-token | Login Verify Token
 *LoginApi* | [**RecoverPassword**](docs/LoginApi.md#RecoverPassword) | **POST** /api/v1/password-recovery/{email} | Recover Password
 *LoginApi* | [**RecoverPasswordHtmlContent**](docs/LoginApi.md#RecoverPasswordHtmlContent) | **POST** /api/v1/password-recovery-html-content/{email} | Recover Password Html Content
@@ -148,6 +149,7 @@ Class | Method | HTTP request | Description
  - [ProgrammaticCredentials](docs/ProgrammaticCredentials.md)
  - [RapmResponse](docs/RapmResponse.md)
  - [RapmScores](docs/RapmScores.md)
+ - [RefreshTokenRequest](docs/RefreshTokenRequest.md)
  - [RosterPublic](docs/RosterPublic.md)
  - [RosterResponse](docs/RosterResponse.md)
  - [ShiftsPublic](docs/ShiftsPublic.md)
