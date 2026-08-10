@@ -5,6 +5,7 @@ All URIs are relative to *https://api.chickenstats.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**LoginFirebaseToken**](LoginApi.md#LoginFirebaseToken) | **POST** /api/v1/login/firebase-token | Login Firebase Token
+[**LoginRefresh**](LoginApi.md#LoginRefresh) | **POST** /api/v1/login/refresh | Login Refresh
 [**LoginVerifyToken**](LoginApi.md#LoginVerifyToken) | **POST** /api/v1/login/verify-token | Login Verify Token
 [**RecoverPassword**](LoginApi.md#RecoverPassword) | **POST** /api/v1/password-recovery/{email} | Recover Password
 [**RecoverPasswordHtmlContent**](LoginApi.md#RecoverPasswordHtmlContent) | **POST** /api/v1/password-recovery-html-content/{email} | Recover Password Html Content
@@ -62,6 +63,54 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+
+# **LoginRefresh**
+> Token LoginRefresh(refresh_token_request)
+
+Login Refresh
+
+Exchange a refresh token for a new access token, rotating the refresh token.  No Firebase round-trip -- this is the whole point (a long-running script/CLI can stay authenticated without re-prompting for credentials). Tier comes from a live Firebase custom-claims lookup (_firebase_stripe_role), same source get_current_user_tier's own CF-service-token path already uses, since there's no fresh ID token here to read a stripeRole claim off of directly. Rotation: the presented refresh token is revoked and a new one issued on every successful call, same principle as any refresh-token system -- limits a leaked token to a single use before it stops working silently.
+
+### Example
+```R
+library(chickenstats.api)
+
+# Login Refresh
+#
+# prepare function argument(s)
+var_refresh_token_request <- RefreshTokenRequest$new("refresh_token_example") # RefreshTokenRequest | 
+
+api_instance <- LoginApi$new()
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$LoginRefresh(var_refresh_token_requestdata_file = "result.txt")
+result <- api_instance$LoginRefresh(var_refresh_token_request)
+dput(result)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh_token_request** | [**RefreshTokenRequest**](RefreshTokenRequest.md)|  | 
+
+### Return type
+
+[**Token**](Token.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

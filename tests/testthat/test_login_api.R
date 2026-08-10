@@ -22,6 +22,18 @@ test_that("LoginFirebaseToken", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
+test_that("LoginRefresh", {
+  # tests for LoginRefresh
+  # base path: https://api.chickenstats.com
+  # Login Refresh
+  # Exchange a refresh token for a new access token, rotating the refresh token.  No Firebase round-trip -- this is the whole point (a long-running script/CLI can stay authenticated without re-prompting for credentials). Tier comes from a live Firebase custom-claims lookup (_firebase_stripe_role), same source get_current_user_tier&#39;s own CF-service-token path already uses, since there&#39;s no fresh ID token here to read a stripeRole claim off of directly. Rotation: the presented refresh token is revoked and a new one issued on every successful call, same principle as any refresh-token system -- limits a leaked token to a single use before it stops working silently.
+  # @param refresh_token_request RefreshTokenRequest 
+  # @return [Token]
+
+  # uncomment below to test the operation
+  #expect_equal(result, "EXPECTED_RESULT")
+})
+
 test_that("LoginVerifyToken", {
   # tests for LoginVerifyToken
   # base path: https://api.chickenstats.com

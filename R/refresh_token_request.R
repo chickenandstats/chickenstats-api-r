@@ -1,46 +1,28 @@
-#' Create a new Token
+#' Create a new RefreshTokenRequest
 #'
 #' @description
-#' Token Class
+#' RefreshTokenRequest Class
 #'
 #' @docType class
-#' @title Token
-#' @description Token Class
+#' @title RefreshTokenRequest
+#' @description RefreshTokenRequest Class
 #' @format An \code{R6Class} generator object
-#' @field access_token  character
-#' @field token_type  character [optional]
-#' @field refresh_token  character [optional]
+#' @field refresh_token  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
-Token <- R6::R6Class(
-  "Token",
+RefreshTokenRequest <- R6::R6Class(
+  "RefreshTokenRequest",
   public = list(
-    `access_token` = NULL,
-    `token_type` = NULL,
     `refresh_token` = NULL,
 
     #' @description
-    #' Initialize a new Token class.
+    #' Initialize a new RefreshTokenRequest class.
     #'
-    #' @param access_token access_token
-    #' @param token_type token_type. Default to "bearer".
     #' @param refresh_token refresh_token
     #' @param ... Other optional arguments.
-    initialize = function(`access_token`, `token_type` = "bearer", `refresh_token` = NULL, ...) {
-      if (!missing(`access_token`)) {
-        if (!(is.character(`access_token`) && length(`access_token`) == 1)) {
-          stop(paste("Error! Invalid data for `access_token`. Must be a string:", `access_token`))
-        }
-        self$`access_token` <- `access_token`
-      }
-      if (!is.null(`token_type`)) {
-        if (!(is.character(`token_type`) && length(`token_type`) == 1)) {
-          stop(paste("Error! Invalid data for `token_type`. Must be a string:", `token_type`))
-        }
-        self$`token_type` <- `token_type`
-      }
-      if (!is.null(`refresh_token`)) {
+    initialize = function(`refresh_token`, ...) {
+      if (!missing(`refresh_token`)) {
         if (!(is.character(`refresh_token`) && length(`refresh_token`) == 1)) {
           stop(paste("Error! Invalid data for `refresh_token`. Must be a string:", `refresh_token`))
         }
@@ -60,9 +42,9 @@ Token <- R6::R6Class(
     #'
     #' Convert the R6 object to a list to work more easily with other tooling.
     #'
-    #' @return Token as a base R list.
+    #' @return RefreshTokenRequest as a base R list.
     #' @examples
-    #' # convert array of Token (x) to a data frame
+    #' # convert array of RefreshTokenRequest (x) to a data frame
     #' \dontrun{
     #' library(purrr)
     #' library(tibble)
@@ -74,39 +56,25 @@ Token <- R6::R6Class(
     },
 
     #' @description
-    #' Convert Token to a base R type
+    #' Convert RefreshTokenRequest to a base R type
     #'
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
-      TokenObject <- list()
-      if (!is.null(self$`access_token`)) {
-        TokenObject[["access_token"]] <-
-          self$`access_token`
-      }
-      if (!is.null(self$`token_type`)) {
-        TokenObject[["token_type"]] <-
-          self$`token_type`
-      }
+      RefreshTokenRequestObject <- list()
       if (!is.null(self$`refresh_token`)) {
-        TokenObject[["refresh_token"]] <-
+        RefreshTokenRequestObject[["refresh_token"]] <-
           self$`refresh_token`
       }
-      return(TokenObject)
+      return(RefreshTokenRequestObject)
     },
 
     #' @description
-    #' Deserialize JSON string into an instance of Token
+    #' Deserialize JSON string into an instance of RefreshTokenRequest
     #'
     #' @param input_json the JSON input
-    #' @return the instance of Token
+    #' @return the instance of RefreshTokenRequest
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`access_token`)) {
-        self$`access_token` <- this_object$`access_token`
-      }
-      if (!is.null(this_object$`token_type`)) {
-        self$`token_type` <- this_object$`token_type`
-      }
       if (!is.null(this_object$`refresh_token`)) {
         self$`refresh_token` <- this_object$`refresh_token`
       }
@@ -117,7 +85,7 @@ Token <- R6::R6Class(
     #' To JSON String
     #' 
     #' @param ... Parameters passed to `jsonlite::toJSON`
-    #' @return Token in JSON format
+    #' @return RefreshTokenRequest in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
@@ -125,38 +93,36 @@ Token <- R6::R6Class(
     },
 
     #' @description
-    #' Deserialize JSON string into an instance of Token
+    #' Deserialize JSON string into an instance of RefreshTokenRequest
     #'
     #' @param input_json the JSON input
-    #' @return the instance of Token
+    #' @return the instance of RefreshTokenRequest
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`access_token` <- this_object$`access_token`
-      self$`token_type` <- this_object$`token_type`
       self$`refresh_token` <- this_object$`refresh_token`
       self
     },
 
     #' @description
-    #' Validate JSON input with respect to Token and throw an exception if invalid
+    #' Validate JSON input with respect to RefreshTokenRequest and throw an exception if invalid
     #'
     #' @param input the JSON input
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
-      # check the required field `access_token`
-      if (!is.null(input_json$`access_token`)) {
-        if (!(is.character(input_json$`access_token`) && length(input_json$`access_token`) == 1)) {
-          stop(paste("Error! Invalid data for `access_token`. Must be a string:", input_json$`access_token`))
+      # check the required field `refresh_token`
+      if (!is.null(input_json$`refresh_token`)) {
+        if (!(is.character(input_json$`refresh_token`) && length(input_json$`refresh_token`) == 1)) {
+          stop(paste("Error! Invalid data for `refresh_token`. Must be a string:", input_json$`refresh_token`))
         }
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for Token: the required field `access_token` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for RefreshTokenRequest: the required field `refresh_token` is missing."))
       }
     },
 
     #' @description
     #' To string (JSON format)
     #'
-    #' @return String representation of Token
+    #' @return String representation of RefreshTokenRequest
     toString = function() {
       self$toJSONString()
     },
@@ -166,8 +132,8 @@ Token <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
-      # check if the required `access_token` is null
-      if (is.null(self$`access_token`)) {
+      # check if the required `refresh_token` is null
+      if (is.null(self$`refresh_token`)) {
         return(FALSE)
       }
 
@@ -180,9 +146,9 @@ Token <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
-      # check if the required `access_token` is null
-      if (is.null(self$`access_token`)) {
-        invalid_fields["access_token"] <- "Non-nullable required field `access_token` cannot be null."
+      # check if the required `refresh_token` is null
+      if (is.null(self$`refresh_token`)) {
+        invalid_fields["refresh_token"] <- "Non-nullable required field `refresh_token` cannot be null."
       }
 
       invalid_fields
@@ -199,13 +165,13 @@ Token <- R6::R6Class(
   lock_class = TRUE
 )
 ## Uncomment below to unlock the class to allow modifications of the method or field
-# Token$unlock()
+# RefreshTokenRequest$unlock()
 #
 ## Below is an example to define the print function
-# Token$set("public", "print", function(...) {
+# RefreshTokenRequest$set("public", "print", function(...) {
 #   print(jsonlite::prettify(self$toJSONString()))
 #   invisible(self)
 # })
 ## Uncomment below to lock the class to prevent modifications to the method or field
-# Token$lock()
+# RefreshTokenRequest$lock()
 

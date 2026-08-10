@@ -18,3 +18,10 @@ test_that("token_type", {
   # uncomment below to test the property
   #expect_equal(model.instance$`token_type`, "EXPECTED_RESULT")
 })
+
+test_that("refresh_token", {
+  # tests for the property `refresh_token` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`refresh_token`, "EXPECTED_RESULT")
+})

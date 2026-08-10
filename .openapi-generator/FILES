@@ -43,6 +43,7 @@ R/programmatic_credentials.R
 R/rapm_api.R
 R/rapm_response.R
 R/rapm_scores.R
+R/refresh_token_request.R
 R/roster_public.R
 R/roster_response.R
 R/rosters_api.R
@@ -115,6 +116,7 @@ docs/ProgrammaticCredentials.md
 docs/RapmApi.md
 docs/RapmResponse.md
 docs/RapmScores.md
+docs/RefreshTokenRequest.md
 docs/RosterPublic.md
 docs/RosterResponse.md
 docs/RostersApi.md
@@ -188,6 +190,7 @@ tests/testthat/test_programmatic_credentials.R
 tests/testthat/test_rapm_api.R
 tests/testthat/test_rapm_response.R
 tests/testthat/test_rapm_scores.R
+tests/testthat/test_refresh_token_request.R
 tests/testthat/test_roster_public.R
 tests/testthat/test_roster_response.R
 tests/testthat/test_rosters_api.R

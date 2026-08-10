@@ -6,5 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_token** | **character** |  | 
 **token_type** | **character** |  | [optional] [default to &quot;bearer&quot;] 
+**refresh_token** | **character** |  | [optional] 
 
 
