@@ -20,9 +20,12 @@ test_that("ReadPlayers", {
   # tests for ReadPlayers
   # base path: https://api.chickenstats.com
   # Read Players
-  # @param name character  (optional)
-  # @param position character  (optional)
-  # @param eh_id character  (optional)
+  # @param name array[character]  (optional)
+  # @param position array[character]  (optional)
+  # @param eh_id array[character]  (optional)
+  # @param api_id array[integer]  (optional)
+  # @param team array[character]  (optional)
+  # @param season array[integer]  (optional)
   # @param limit integer  (optional)
   # @param offset integer  (optional)
   # @return [PlayerResponse]
