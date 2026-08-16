@@ -12,6 +12,7 @@
 #' @field season  integer
 #' @field session  character
 #' @field base_xg  numeric
+#' @field context_xg  numeric
 #' @field pred_goal  numeric
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -24,6 +25,7 @@ PredGoalRow <- R6::R6Class(
     `season` = NULL,
     `session` = NULL,
     `base_xg` = NULL,
+    `context_xg` = NULL,
     `pred_goal` = NULL,
 
     #' @description
@@ -34,9 +36,10 @@ PredGoalRow <- R6::R6Class(
     #' @param season season
     #' @param session session
     #' @param base_xg base_xg
+    #' @param context_xg context_xg
     #' @param pred_goal pred_goal
     #' @param ... Other optional arguments.
-    initialize = function(`game_id`, `event_idx`, `season`, `session`, `base_xg`, `pred_goal`, ...) {
+    initialize = function(`game_id`, `event_idx`, `season`, `session`, `base_xg`, `context_xg`, `pred_goal`, ...) {
       if (!missing(`game_id`)) {
         if (!(is.numeric(`game_id`) && length(`game_id`) == 1)) {
           stop(paste("Error! Invalid data for `game_id`. Must be an integer:", `game_id`))
@@ -63,6 +66,9 @@ PredGoalRow <- R6::R6Class(
       }
       if (!missing(`base_xg`)) {
         self$`base_xg` <- `base_xg`
+      }
+      if (!missing(`context_xg`)) {
+        self$`context_xg` <- `context_xg`
       }
       if (!missing(`pred_goal`)) {
         self$`pred_goal` <- `pred_goal`
@@ -120,6 +126,10 @@ PredGoalRow <- R6::R6Class(
         PredGoalRowObject[["base_xg"]] <-
           self$`base_xg`
       }
+      if (!is.null(self$`context_xg`)) {
+        PredGoalRowObject[["context_xg"]] <-
+          self$`context_xg`
+      }
       if (!is.null(self$`pred_goal`)) {
         PredGoalRowObject[["pred_goal"]] <-
           self$`pred_goal`
@@ -148,6 +158,9 @@ PredGoalRow <- R6::R6Class(
       }
       if (!is.null(this_object$`base_xg`)) {
         self$`base_xg` <- this_object$`base_xg`
+      }
+      if (!is.null(this_object$`context_xg`)) {
+        self$`context_xg` <- this_object$`context_xg`
       }
       if (!is.null(this_object$`pred_goal`)) {
         self$`pred_goal` <- this_object$`pred_goal`
@@ -178,6 +191,7 @@ PredGoalRow <- R6::R6Class(
       self$`season` <- this_object$`season`
       self$`session` <- this_object$`session`
       self$`base_xg` <- this_object$`base_xg`
+      self$`context_xg` <- this_object$`context_xg`
       self$`pred_goal` <- this_object$`pred_goal`
       self
     },
@@ -224,6 +238,11 @@ PredGoalRow <- R6::R6Class(
       if (!is.null(input_json$`base_xg`)) {
       } else {
         stop(paste("The JSON input `", input, "` is invalid for PredGoalRow: the required field `base_xg` is missing."))
+      }
+      # check the required field `context_xg`
+      if (!is.null(input_json$`context_xg`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for PredGoalRow: the required field `context_xg` is missing."))
       }
       # check the required field `pred_goal`
       if (!is.null(input_json$`pred_goal`)) {

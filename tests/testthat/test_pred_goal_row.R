@@ -40,6 +40,13 @@ test_that("base_xg", {
   #expect_equal(model.instance$`base_xg`, "EXPECTED_RESULT")
 })
 
+test_that("context_xg", {
+  # tests for the property `context_xg` (numeric)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`context_xg`, "EXPECTED_RESULT")
+})
+
 test_that("pred_goal", {
   # tests for the property `pred_goal` (numeric)
 
