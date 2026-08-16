@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 | **422** | Validation Error |  -  |
 
 # **ReadPlayers**
-> PlayerResponse ReadPlayers(name = var.name, position = var.position, eh_id = var.eh_id, api_id = var.api_id, team = var.team, season = var.season, limit = 10000, offset = 0)
+> PlayerResponse ReadPlayers(name = var.name, eh_id = var.eh_id, api_id = var.api_id, limit = 10000, offset = 0)
 
 Read Players
 
@@ -69,11 +69,8 @@ library(chickenstats.api)
 #
 # prepare function argument(s)
 var_name <- c("inner_example") # array[character] |  (Optional)
-var_position <- c("inner_example") # array[character] |  (Optional)
 var_eh_id <- c("inner_example") # array[character] |  (Optional)
 var_api_id <- c(123) # array[integer] |  (Optional)
-var_team <- c("inner_example") # array[character] |  (Optional)
-var_season <- c(123) # array[integer] |  (Optional)
 var_limit <- 10000 # integer |  (Optional)
 var_offset <- 0 # integer |  (Optional)
 
@@ -81,8 +78,8 @@ api_instance <- PlayersApi$new()
 # Configure OAuth2 access token for authorization: OAuth2PasswordBearer
 api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ReadPlayers(name = var_name, position = var_position, eh_id = var_eh_id, api_id = var_api_id, team = var_team, season = var_season, limit = var_limit, offset = var_offsetdata_file = "result.txt")
-result <- api_instance$ReadPlayers(name = var_name, position = var_position, eh_id = var_eh_id, api_id = var_api_id, team = var_team, season = var_season, limit = var_limit, offset = var_offset)
+# result <- api_instance$ReadPlayers(name = var_name, eh_id = var_eh_id, api_id = var_api_id, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+result <- api_instance$ReadPlayers(name = var_name, eh_id = var_eh_id, api_id = var_api_id, limit = var_limit, offset = var_offset)
 dput(result)
 ```
 
@@ -91,11 +88,8 @@ dput(result)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | list( **character** )|  | [optional] 
- **position** | list( **character** )|  | [optional] 
  **eh_id** | list( **character** )|  | [optional] 
  **api_id** | list( **integer** )|  | [optional] 
- **team** | list( **character** )|  | [optional] 
- **season** | list( **integer** )|  | [optional] 
  **limit** | **integer**|  | [optional] [default to 10000]
  **offset** | **integer**|  | [optional] [default to 0]
 

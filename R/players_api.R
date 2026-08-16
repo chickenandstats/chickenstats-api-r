@@ -35,11 +35,8 @@
 #'
 #' library(chickenstats.api)
 #' var_name <- c("inner_example") # array[character] |  (Optional)
-#' var_position <- c("inner_example") # array[character] |  (Optional)
 #' var_eh_id <- c("inner_example") # array[character] |  (Optional)
 #' var_api_id <- c(123) # array[integer] |  (Optional)
-#' var_team <- c("inner_example") # array[character] |  (Optional)
-#' var_season <- c(123) # array[integer] |  (Optional)
 #' var_limit <- 10000 # integer |  (Optional)
 #' var_offset <- 0 # integer |  (Optional)
 #'
@@ -50,8 +47,8 @@
 #' api_instance$api_client$access_token <- Sys.getenv("ACCESS_TOKEN")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$ReadPlayers(name = var_name, position = var_position, eh_id = var_eh_id, api_id = var_api_id, team = var_team, season = var_season, limit = var_limit, offset = var_offsetdata_file = "result.txt")
-#' result <- api_instance$ReadPlayers(name = var_name, position = var_position, eh_id = var_eh_id, api_id = var_api_id, team = var_team, season = var_season, limit = var_limit, offset = var_offset)
+#' # result <- api_instance$ReadPlayers(name = var_name, eh_id = var_eh_id, api_id = var_api_id, limit = var_limit, offset = var_offsetdata_file = "result.txt")
+#' result <- api_instance$ReadPlayers(name = var_name, eh_id = var_eh_id, api_id = var_api_id, limit = var_limit, offset = var_offset)
 #' dput(result)
 #'
 #'
@@ -181,19 +178,16 @@ PlayersApi <- R6::R6Class(
     #' Read Players
     #'
     #' @param name (optional) No description
-    #' @param position (optional) No description
     #' @param eh_id (optional) No description
     #' @param api_id (optional) No description
-    #' @param team (optional) No description
-    #' @param season (optional) No description
     #' @param limit (optional) No description (default value: 10000)
     #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return PlayerResponse
-    ReadPlayers = function(name = NULL, position = NULL, eh_id = NULL, api_id = NULL, team = NULL, season = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
-      local_var_response <- self$ReadPlayersWithHttpInfo(name, position, eh_id, api_id, team, season, limit, offset, data_file = data_file, ...)
+    ReadPlayers = function(name = NULL, eh_id = NULL, api_id = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
+      local_var_response <- self$ReadPlayersWithHttpInfo(name, eh_id, api_id, limit, offset, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -209,18 +203,15 @@ PlayersApi <- R6::R6Class(
     #' Read Players
     #'
     #' @param name (optional) No description
-    #' @param position (optional) No description
     #' @param eh_id (optional) No description
     #' @param api_id (optional) No description
-    #' @param team (optional) No description
-    #' @param season (optional) No description
     #' @param limit (optional) No description (default value: 10000)
     #' @param offset (optional) No description (default value: 0)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (PlayerResponse) with additional information such as HTTP status code, headers
-    ReadPlayersWithHttpInfo = function(name = NULL, position = NULL, eh_id = NULL, api_id = NULL, team = NULL, season = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
+    ReadPlayersWithHttpInfo = function(name = NULL, eh_id = NULL, api_id = NULL, limit = 10000, offset = 0, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -229,9 +220,6 @@ PlayersApi <- R6::R6Class(
       local_var_body <- NULL
       oauth_scopes <- NULL
       is_oauth <- FALSE
-
-
-
 
 
 
@@ -253,11 +241,6 @@ PlayersApi <- R6::R6Class(
       }
 
       # explore
-      for (query_item in `position`) {
-        query_params[["position"]] <- c(query_params[["position"]], list(`position` = query_item))
-      }
-
-      # explore
       for (query_item in `eh_id`) {
         query_params[["eh_id"]] <- c(query_params[["eh_id"]], list(`eh_id` = query_item))
       }
@@ -265,16 +248,6 @@ PlayersApi <- R6::R6Class(
       # explore
       for (query_item in `api_id`) {
         query_params[["api_id"]] <- c(query_params[["api_id"]], list(`api_id` = query_item))
-      }
-
-      # explore
-      for (query_item in `team`) {
-        query_params[["team"]] <- c(query_params[["team"]], list(`team` = query_item))
-      }
-
-      # explore
-      for (query_item in `season`) {
-        query_params[["season"]] <- c(query_params[["season"]], list(`season` = query_item))
       }
 
       query_params[["limit"]] <- `limit`
